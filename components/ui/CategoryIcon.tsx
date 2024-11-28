@@ -10,7 +10,6 @@ type CategoryIconProps = {
 
 export default function CategoryIcon({ category }: CategoryIconProps) {
   const params = useParams<{ category: string }>();
-  console.log(params);
   return (
     <div
       className={`${

@@ -1,5 +1,5 @@
 import ProductCard from '@/components/products/ProductCard';
-import { prisma } from '@/src/lib/Prisma';
+import { prisma } from '@/src/lib/prisma';
 
 type CategoryProps = {
   category: string;
@@ -22,6 +22,7 @@ export default async function OrderPage({
   params: Promise<CategoryProps>;
 }) {
   const { category } = await params;
+
   const products = await getProducts(category);
   return (
     <>
