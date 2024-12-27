@@ -1,6 +1,6 @@
 import OrderCard from '@/components/order/OrderCard';
 import Heading from '@/components/ui/Heading';
-import { prisma } from '@/src/lib/prisma';
+import { prisma } from '@/src/lib/Prisma';
 
 async function getPendingOrders() {
   const orders = await prisma.order.findMany({
