@@ -31,6 +31,9 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+.env
+.env.local
+.env.staging
 
 # vercel
 .vercel
@@ -42,8 +45,3 @@ next-env.d.ts
 # Lock files
 package-lock.json
 yarn.lock
-
-# .env files
-.env
-.env.local
-.env.staging
