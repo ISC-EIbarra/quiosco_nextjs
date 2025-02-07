@@ -1,7 +1,10 @@
+import { redirect } from 'next/navigation';
 import ProductsPagination from '@/components/products/ProductsPagination';
 import ProductTable from '@/components/products/ProductTable';
 import Heading from '@/components/ui/Heading';
 import { prisma } from '@/src/lib/Prisma';
+import Link from 'next/link';
+import ProductFormSearch from '@/components/products/ProductFormSearch';
 
 async function productCount() {
   return await prisma.product.count();
@@ -28,6 +31,7 @@ export default async function ProductsPage({
 }) {
   const page = +searchParams.page || 1;
   const pageSize = 10;
+  if (page < 0) redirect('/admin/products');
 
   const productsData = getProducts(page, pageSize);
   const totalProductsData = productCount();
@@ -35,13 +39,24 @@ export default async function ProductsPage({
     productsData,
     totalProductsData,
   ]);
-  console.log(totalProductsData);
+  const totalPages = Math.ceil(totalProducts / pageSize);
+
+  if (page > totalPages) redirect('/admin/products');
 
   return (
     <>
       <Heading>Administrar Productos</Heading>
+      <div className="flex flex-col lg:flex-row lg:justify-between gap-5 ">
+        <Link
+          href={'/admin/products/new'}
+          className="bg-amber-400 w-full lg:w-auto text-xl px-10 py-3 text-center font-bold cursor-pointer"
+        >
+          Crear Producto
+        </Link>
+        <ProductFormSearch />
+      </div>
       <ProductTable products={products} />
-      <ProductsPagination page={page} />
+      <ProductsPagination page={page} totalPages={totalPages} />
     </>
   );
 }
