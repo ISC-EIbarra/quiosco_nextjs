@@ -1,16 +1,18 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
-import { createProduct } from '@/actions/create-product-action';
+import { useParams, useRouter } from 'next/navigation';
 import { ProductSchema } from '@/src/schema';
 import { toast } from 'react-toastify';
+import { updateProduct } from '@/actions/update-product-action';
 
-export default function AddProductForm({
+export default function EditProductForm({
   children,
 }: {
   children: React.ReactNode;
 }) {
   const router = useRouter();
+  const params = useParams();
+  const id = +params.id!;
 
   const handleSubmit = async (formData: FormData) => {
     const data = {
@@ -21,6 +23,7 @@ export default function AddProductForm({
     };
 
     const result = ProductSchema.safeParse(data);
+    console.log(result);
 
     if (!result.success) {
       result.error.issues.forEach((issue) => {
@@ -29,7 +32,7 @@ export default function AddProductForm({
       return;
     }
 
-    const response = await createProduct(result.data);
+    const response = await updateProduct(result.data, id);
 
     if (response?.errors) {
       response.errors.forEach((issue) => {
@@ -37,7 +40,7 @@ export default function AddProductForm({
       });
     }
 
-    toast.success('Producto Creado Correctamente');
+    toast.success('Producto Actualizado Correctamente');
     router.push('/admin/products');
   };
 
@@ -48,7 +51,7 @@ export default function AddProductForm({
         <input
           type="submit"
           className="bg-indigo-600 hover:bg-indigo-800 text-white w-full mt-5 transition-colors p-3 uppercase font-bold cursor-pointer"
-          value={'Registrar Producto'}
+          value={'Guardar Cambios'}
         />
       </form>
     </div>
