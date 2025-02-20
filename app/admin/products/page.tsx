@@ -27,9 +27,10 @@ export type ProductsWithCategory = Awaited<ReturnType<typeof getProducts>>;
 export default async function ProductsPage({
   searchParams,
 }: {
-  searchParams: { page: string };
+  searchParams: Promise<{ page: string }>;
 }) {
-  const page = +searchParams.page || 1;
+  const noPage = (await searchParams).page;
+  const page = +noPage || 1;
   const pageSize = 10;
   if (page < 0) redirect('/admin/products');
 
