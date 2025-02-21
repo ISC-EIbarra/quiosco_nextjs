@@ -1,5 +1,7 @@
-import { redirect } from 'next/navigation';
+'use client';
+import { useRouter } from 'next/navigation';
 
 export default function Home() {
-  redirect('/order/cafe');
+  const router = useRouter();
+  router.push('/order/cafe');
 }
