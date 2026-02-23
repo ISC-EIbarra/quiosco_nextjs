@@ -1,6 +1,6 @@
 import ProductCard from '@/components/products/ProductCard';
 import Heading from '@/components/ui/Heading';
-import { prisma } from '@/src/lib/Prisma';
+import prisma from '@/src/lib/Prisma';
 
 type CategoryProps = {
   category: string;

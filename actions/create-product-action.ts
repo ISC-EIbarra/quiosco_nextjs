@@ -1,6 +1,6 @@
 'use server';
 
-import { prisma } from '@/src/lib/Prisma';
+import prisma from '@/src/lib/Prisma';
 import { ProductSchema } from '@/src/schema';
 
 export async function createProduct(data: unknown) {

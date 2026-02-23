@@ -2,7 +2,7 @@ import { redirect } from 'next/navigation';
 import ProductsPagination from '@/components/products/ProductsPagination';
 import ProductTable from '@/components/products/ProductTable';
 import Heading from '@/components/ui/Heading';
-import { prisma } from '@/src/lib/Prisma';
+import prisma from '@/src/lib/Prisma';
 import Link from 'next/link';
 import ProductFormSearch from '@/components/products/ProductFormSearch';
 

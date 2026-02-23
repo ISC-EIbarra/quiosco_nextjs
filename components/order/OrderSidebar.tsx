@@ -1,4 +1,4 @@
-import { prisma } from '@/src/lib/Prisma';
+import prisma from '@/src/lib/Prisma';
 import CategoryIcon from '../ui/CategoryIcon';
 import Logo from '../ui/Logo';
 

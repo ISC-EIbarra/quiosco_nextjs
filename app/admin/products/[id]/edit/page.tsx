@@ -2,7 +2,7 @@ import EditProductForm from '@/components/products/EditProductForm';
 import ProductForm from '@/components/products/ProductForm';
 import GoBackButton from '@/components/ui/GoBackButton';
 import Heading from '@/components/ui/Heading';
-import { prisma } from '@/src/lib/Prisma';
+import prisma from '@/src/lib/Prisma';
 import { notFound } from 'next/navigation';
 
 async function getProductById(id: number) {

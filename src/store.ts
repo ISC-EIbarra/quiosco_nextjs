@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { OrderItem } from './types';
-import { Product } from '@prisma/client';
+import { Product } from '@/src/generated/prisma/client';
 
 interface Store {
   order: OrderItem[];
@@ -25,7 +25,7 @@ export const useStore = create<Store>((set, get) => ({
               quantity: item.quantity + 1,
               subtotal: item.price * (item.quantity + 1),
             }
-          : item
+          : item,
       );
     } else {
       order = [
@@ -51,7 +51,7 @@ export const useStore = create<Store>((set, get) => ({
               quantity: item.quantity + 1,
               subtotal: item.price * (item.quantity + 1),
             }
-          : item
+          : item,
       ),
     }));
   },
@@ -63,7 +63,7 @@ export const useStore = create<Store>((set, get) => ({
             quantity: item.quantity - 1,
             subtotal: item.price * (item.quantity - 1),
           }
-        : item
+        : item,
     );
 
     set(() => ({
